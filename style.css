@@ -1,0 +1,157 @@
+div.container4 {
+    height: 10em;
+    position: relative }
+
+#txt1 {
+	font-family: "Helvetica Neue";
+	font-weight: 100;
+	font-size: 10em;
+	color: white;
+}
+
+#txt0 {
+    position: absolute;
+    top: 3px;
+    left: 19px;
+    font-family: "Helvetica Neue";
+    font-weight: 100;
+    font-size: 1em;
+    text-align: center;
+    vertical-align:middle;
+    /*color: white;*/
+}
+
+#txt0k {
+    position: absolute;
+    top: 3px;
+    left: 23px;
+    font-family: "Helvetica Neue";
+    font-weight: 100;
+    font-size: 1em;
+    text-align: center;
+    vertical-align:middle;
+    /*color: white;*/
+}
+
+#txtStop {
+    position: absolute;
+    top: 3px;
+    left: 9px;
+    font-family: "Helvetica Neue";
+    font-weight: 100;
+    font-size: 1em;
+    text-align: center;
+    vertical-align:middle;
+    /*color: white;*/
+}
+
+#editor{
+    position: absolute;
+    top:159px;
+    left: 49px;
+    color: #fff;
+    font-family: "Helvetica Neue";
+    font-weight: 100;
+    font-size: 10em;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    border-bottom: 3px solid #fff;
+    width: 405px;
+}
+
+.hidden {
+    display: none;
+}
+
+body {
+    background-color: #f2f2f2;
+}
+
+#circle {
+    position: absolute;
+    top: 55px;
+    left: 400px;
+    background: #8872e8;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+}
+
+#circleSmall {
+    position: absolute;
+    top: 80px;
+    left: 425px;
+    background: #8872e8;
+    width: 445px;
+    height: 445px;
+    border-radius: 50%;
+}
+
+#circle0 {
+    position: absolute;
+    top: 440px;
+    left: 300px;
+    background: #ffffff;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+#square {
+    position : absolute;
+    top: 15px;
+    left: 350px;
+    background: #fffae5;
+    width:600px;
+    height:580px;
+}
+
+.myButton1 {
+    position: absolute;
+    top: 425px;
+    left: 610px;
+    background-color:#785de8;
+    width: 80px;
+    height: 80px;
+    border-radius:50%;
+    /*display:inline-block;*/
+    cursor: pointer;
+    color:#c7c7ca;
+    font-family:Helvetica;
+    font-size:25px;  
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+.myButton1:hover {
+    background-color:#5d3ec2;
+    color:#ffffff;
+}
+
+.myButton {
+    position: absolute;
+    top: 425px;
+    left: 610px;
+    background-color:#785de8;
+    width: 80px;
+    height: 80px;
+    border-radius:50%;
+    /*display:inline-block;*/
+    cursor: pointer;
+    color:#c7c7ca;
+    font-family:Helvetica;
+    font-size:25px;  
+    text-align: center;
+    vertical-align:middle;
+}
+
+.myButton:hover {
+    background-color:#5d3ec2;
+    color:#ffffff;
+}
+
+.myButton:active {
+    /*position:relative;*/
+    /*top:1px;*/
+}
