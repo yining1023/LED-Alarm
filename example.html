@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script>
+var hh,mm,h,m;
+var blinking = false;
+var stop = false;
+
+function startTime() {
+    var today=new Date();
+    h=parseInt(today.getHours());
+    m=parseInt(today.getMinutes());
+    var s=today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    // document.getElementById('txt0').innerHTML = h+":"+m;
+    document.getElementById('txt1').innerHTML = h+":"+m;
+    var t = setTimeout(function(){startTime()},500);
+}
+
+function checkTime(i) {
+    if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+
+function toggleEditMode() {
+    $("#txt1").toggleClass("hidden");
+    $("#editor").toggleClass("hidden");
+    changeButtonSetToOk();
+}
+
+function sendData(){
+    var alarmTime = $("#editor").val();
+    
+    //assuming user will enter "hh:mm" as text
+    hh = parseInt(alarmTime.split(':')[0]);
+    mm = parseInt(alarmTime.split(':')[1]);
+    
+    
+    $.post( "/submitAlarm", { hour: hh, min: mm } )
+        .done(function(data) {
+            // alert( "Alarm Saved" );
+          });
+}
+
+function handleAlarm(){
+    if (stop === false && h===hh && m===mm){
+        
+        $("#circle").toggleClass("hidden");
+        // $("#circleBlink").toggleClass("hidden");
+        blinking = true;
+
+    }
+    var t = setTimeout(function(){handleAlarm()},500);
+
+}
+
+function Blinkk(){
+     changeButtonSetToStop();
+     console.log('the boolean checking is working!!!');
+}
+
+function checkBlink(){
+    if(!blinking){
+        setTimeout("checkBlink();", 200);
+        return;
+    }else{
+      Blinkk();
+    }
+}
+
+function stopBlink(){
+    stop = true;
+    $("#circle").toggleClass("hidden");
+    console.log('the stopblink function is working!!!!!!!!!');
+    $.post( "/clock/alarm/off");
+
+}
+
+function changeButtonSetToOk(){
+
+     $("#txt0").toggleClass("hidden");
+     $("#txt0k").toggleClass("hidden");
+     $("#button2").toggleClass("hidden");
+}
+
+function changeButtonSetToStop(){
+
+     $("#txt0").toggleClass("hidden");
+     $("#txtStop").toggleClass("hidden");
+     $("#button3").toggleClass("hidden");
+}
+
+
+function blink() {
+    var blinks = document.getElementsByTagName('blink');
+    for (var i = blinks.length - 1; i >= 0; i--) {
+      var s = blinks[i];
+      s.style.visibility = (s.style.visibility === 'visible') ? 'hidden' : 'visible';
+    }
+    window.setTimeout(blink, 500);
+  }
+  if (document.addEventListener) document.addEventListener("DOMContentLoaded", blink, false);
+  else if (window.addEventListener) window.addEventListener("load", blink, false);
+  else if (window.attachEvent) window.attachEvent("onload", blink);
+  else window.onload = blink;
+
+</script>
+</head>
+
+<body onload="startTime(); handleAlarm(); checkBlink();">
+
+<!-- <a href="addAlarm.html" class="myButton" id ="txt0"></a>
+ -->
+
+<center>
+    <div id="square"></div>
+
+    
+    <div id="circleSmall">
+        <!-- <p id="txt1"></p> -->
+    </div>
+    
+    <div id="circle">
+        <input type="text" id="editor" class="hidden" placeholder=""></input>
+        <p id="txt1"></p>    
+    </div>
+
+    <!-- <blink><div id="circleBlink" class="hidden">
+        <p id="txt1"></p>    
+    </div></blink> -->
+
+
+
+        <a onclick="toggleEditMode()" class="myButton">
+         <p id ="txt0">SET</p>
+        </a>
+
+        <a id ="button2" onclick="sendData(); toggleEditMode();" class="myButton hidden">
+         <p id ="txt0k" class="hidden">OK</p>
+        </a>
+
+        <a id ="button3" onclick="stopBlink(); changeButtonSetToStop();" class="myButton1 hidden">
+         <p id ="txtStop" class="hidden">STOP</p>
+        </a>
+        
+</center>
+
+</body>
+</html>
